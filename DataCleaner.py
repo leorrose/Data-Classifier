@@ -51,10 +51,13 @@ class Cleaner:
                             columnName : {'index': index , 'values': ["Numeric"]
         """
         for column in structure.values():
-            if str(column['values'][0]).upper() == "NUMERIC":
-                self.fillNumericValuesInColumn(data, structure, column['index'])
+            if column == structure["class"]:
+                pass
             else:
-                self.fillCategorialValuesInColumn(data, structure, column['index'])
+                if str(column['values'][0]).upper() == "NUMERIC":
+                    self.fillNumericValuesInColumn(data, structure, column['index'])
+                else:
+                    self.fillCategorialValuesInColumn(data, structure, column['index'])
 
     def fillNumericValuesInColumn(self, data, structure, indexOfCol):
         """
@@ -68,7 +71,9 @@ class Cleaner:
             indexOfCol(int): the index of column we want to fill data
         """
         averages = self.AverageListByClass(data, structure, indexOfCol)
-        totalAverage = sum(map(lambda x: float(x[indexOfCol]), filter(lambda y: y[indexOfCol] != "", data))) / len(data)
+        newData = list(map(lambda x: float(x[indexOfCol]), filter(lambda y: y[indexOfCol] != "", data)))
+        totalAverage = float(sum(newData)) / len(newData)
+        totalAverage = str(round(totalAverage, 2))
         classIndex = structure['class']['index']
         for row in data:
             if row[indexOfCol] == "":
@@ -76,6 +81,7 @@ class Cleaner:
                     row[indexOfCol] = totalAverage
                 else:
                     row[indexOfCol] = averages[(structure['class']['values']).index(row[classIndex])]
+                    row[indexOfCol] = totalAverage if row[indexOfCol] is None else row[indexOfCol]
 
     def AverageListByClass(self, data, structure, indexOfCol):
         """
@@ -96,7 +102,11 @@ class Cleaner:
         for value in structure['class']['values']:
             newData = list(filter(lambda x: x[structure['class']['index']] == value, data))
             columnData = list(map(lambda z: float(z), filter(lambda y: y != "", map(lambda x: x[indexOfCol], newData))))
-            average = sum(columnData) / len(columnData)
+            if len(columnData) > 0:
+                average = float(sum(columnData)) / len(columnData)
+                average = str(round(average, 2))
+            else:
+                average = None
             averages += [average]
         return averages
 

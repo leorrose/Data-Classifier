@@ -63,7 +63,7 @@ class Loader:
             values (list): the values of a column in data set
         """
         values = ["Numeric"]
-        if not self.isNumeric(columnIndex, lines[1:]):
+        if not self.isNumeric(columnIndex, lines):
             values = []
             for line in lines[1:]:
                 if line[columnIndex] != "" and values.count(line[columnIndex]) == 0:
@@ -79,7 +79,7 @@ class Loader:
         Returns:
             (boolean) : True if numeric else False
         """
-        for line in lines:
+        for line in lines[1:]:
             if line[columnIndex] != "":
                 try:
                     int(line[columnIndex])
@@ -96,7 +96,7 @@ class Loader:
         Attributes:
             lines(list): the lines in data set without first line of column names
         """
-        self.trainingSet = lines[0:int((len(lines)*2)/3)]
+        self.trainingSet = lines[0:int(((len(lines)*2)/3) + 0.5)]
 
     def buildTestSet(self, lines):
         """
@@ -104,6 +104,6 @@ class Loader:
         Attributes:
             lines(list): the lines in data set without first line of column names
         """
-        self.testSet = lines[int((len(lines)*2)/3):]
+        self.testSet = lines[int(((len(lines)*2)/3)+0.5):]
 
 
