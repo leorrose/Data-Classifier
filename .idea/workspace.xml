@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2d94d262-43f5-484a-b145-e4b00748d4c5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataCleaner.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCleaner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataLoader.py" afterDir="false" />
-    </list>
+    <list default="true" id="2d94d262-43f5-484a-b145-e4b00748d4c5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +11,45 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MiningCalculations.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MiningCalculations_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1156">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataDiscretization.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataDiscretization_test.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataCleaner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="154" column="40" lean-forward="true" selection-start-line="154" selection-start-column="40" selection-end-line="154" selection-end-column="40" />
+            <state relative-caret-position="2618">
+              <caret line="154" column="40" selection-start-line="154" selection-start-column="40" selection-end-line="154" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -26,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataCleaner_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3961">
-              <caret line="233" selection-start-line="233" selection-end-line="233" />
+            <state relative-caret-position="3978">
+              <caret line="234" selection-start-line="234" selection-end-line="235" selection-end-column="19" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -39,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/DataLoader.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -47,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataLaoder_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="27" selection-end-column="73" />
+            <state relative-caret-position="425">
+              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="27" selection-end-column="73" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -65,6 +96,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>print</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -76,6 +112,10 @@
         <option value="$PROJECT_DIR$/DataLaoder_test.py" />
         <option value="$PROJECT_DIR$/DataCleaner.py" />
         <option value="$PROJECT_DIR$/DataCleaner_test.py" />
+        <option value="$PROJECT_DIR$/DataDiscretization_test.py" />
+        <option value="$PROJECT_DIR$/MiningCalculations_test.py" />
+        <option value="$PROJECT_DIR$/DataDiscretization.py" />
+        <option value="$PROJECT_DIR$/MiningCalculations.py" />
       </list>
     </option>
   </component>
@@ -93,6 +133,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -104,14 +145,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -130,7 +170,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in DataCleaner_test.py">
+  <component name="RunManager" selected="Python tests.Unittests in MiningCalculations_test.py">
     <configuration name="DataLoader" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Data-Classifier" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -201,8 +241,23 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in MiningCalculations_test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Data-Classifier" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/MiningCalculations_test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests in MiningCalculations_test.py" />
         <item itemvalue="Python tests.Unittests in DataCleaner_test.py" />
         <item itemvalue="Python tests.Unittests in DataLaoder_test.py" />
         <item itemvalue="Python.Engine" />
@@ -224,35 +279,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 00m 15s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 39m 36s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 01m 04s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 40m 17s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 01m 41s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 40m 46s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 03m 55s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 41m 59s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 04m 29s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 42m 00s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 04m 52s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 50m 06s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 05m 19s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 50m 36s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 07m 01s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 50m 37s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 07m 38s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 50m 55s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_DataCleaner_test_py - 2019.07.07 at 22h 07m 58s.xml">
-      <configuration name="Unittests in DataCleaner_test.py" configurationId="tests" />
+    <history-entry file="Unittests_in_MiningCalculations_test_py - 2019.07.08 at 22h 57m 43s.xml">
+      <configuration name="Unittests in MiningCalculations_test.py" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -306,34 +361,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/My stuff/Software Programs/Python/Lib/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="665" selection-start-line="665" selection-end-line="665" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataLoader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataLaoder_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="27" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataCleaner_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3961">
-          <caret line="233" selection-start-line="233" selection-end-line="233" />
+        <state relative-caret-position="425">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="27" selection-end-column="73" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -342,8 +380,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataCleaner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="154" column="40" lean-forward="true" selection-start-line="154" selection-start-column="40" selection-end-line="154" selection-end-column="40" />
+        <state relative-caret-position="2618">
+          <caret line="154" column="40" selection-start-line="154" selection-start-column="40" selection-end-line="154" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataCleaner_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3978">
+          <caret line="234" selection-start-line="234" selection-end-line="235" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/My stuff/Software Programs/Python/Lib/unittest/suite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/My stuff/Software Programs/Python/Lib/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="600" selection-start-line="600" selection-end-line="600" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiningCalculations_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataDiscretization_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataDiscretization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MiningCalculations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="45" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
         </state>
       </provider>
     </entry>
