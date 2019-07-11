@@ -28,9 +28,7 @@ class Discretization:
                 elif typeOfDiscretization.upper() == "EQUALDEPTH":
                     bins = self.createBinsByEqualDepth(trainData, colIndex, numOfBins)
                 elif typeOfDiscretization.upper() == "GINI":
-                    bins = self.createBinsByGiniIndex(trainData, colIndex, numOfBins)
-                elif typeOfDiscretization.upper() == "CLUSTERING":
-                    bins = self.createBinsByClustering(trainData, colIndex, numOfBins)
+                    bins = self.createBinsByGiniIndex(trainData, structure, colIndex, numOfBins)
                 elif typeOfDiscretization.upper() == "ENTROPY":
                     bins = self.createBinsByEntropy(trainData, structure, columnName, numOfBins)
                 else:
@@ -66,8 +64,8 @@ class Discretization:
 
     def createBinsByEqualWidth(self, data, colIndex, numOfBins):
         """
-        method to create a bins dict by Equal Width technique each key is a string representations of the bin and its value is a function to check
-        if some value belongs to the bin example {"value<X" : lambda x: x<x...}
+        method to create a bins dict by Equal Width technique each key is a string representations of the bin and its value is a function
+        to check if some value belongs to the bin example {"value<X" : lambda x: x<x...}
         Attributes:
             data(list) : list of lines in data set each element is a list
             colIndex(int): the index of column to create bins from
@@ -89,8 +87,8 @@ class Discretization:
 
     def createBinsByEqualDepth(self, data, colIndex, numOfBins):
         """
-        method to create a bins dict by Equal Depth technique each key is a string representations of the bin and its value is a function to check
-        if some value belongs to the bin example {"value<X" : lambda x: x<x...}
+        method to create a bins dict by Equal Depth technique each key is a string representations of the bin and its value is a function
+        to check if some value belongs to the bin example {"value<X" : lambda x: x<x...}
         Attributes:
             data(list) : list of lines in data set each element is a list
             colIndex(int): the index of column to create bins from
@@ -115,8 +113,8 @@ class Discretization:
 
     def createBinsByEntropy(self, data, structure, colName, numOfBins):
         """
-        method to create a bins dict by Entropy technique each key is a string representations of the bin and its value is a function to check
-        if some value belongs to the bin example {"value<X" : lambda x: x<x...}
+        method to create a bins dict by Entropy technique each key is a string representations of the bin and its value is a function
+        to check if some value belongs to the bin example {"value<X" : lambda x: x<x...}
         Attributes:
             data(list) : list of lines in data set each element is a list
             structure(dict): the structure of data set returns {} if data set is empty, each element is
@@ -129,7 +127,7 @@ class Discretization:
             if some value belongs to the bin example {"value<X" : lambda x: x<x...}
             Attributes:
         """
-        splits = self.miningCalculator.getBestSplitsInDataByInfoGainInto(data, structure, colName, numOfBins-1)
+        splits = self.miningCalculator.getBestSplitsInDataByInfoGain(data, structure, colName, numOfBins-1)
         splits.sort()
         bins = {"value<="+str(splits[0]): lambda x: x < splits[0]}
         for i in range(1, numOfBins-1):
@@ -137,10 +135,10 @@ class Discretization:
         bins["value>" + str(splits[len(splits)-1])] = (lambda x: x > splits[len(splits)-1])
         return bins
 
-    def createBinsByGiniIndex(self, data, colIndex, numOfBins):
+    def createBinsByGiniIndex(self, data, structure, colIndex, numOfBins):
         """
-        method to create a bins dict by Gini Index technique each key is a string representations of the bin and its value is a function to check
-        if some value belongs to the bin example {"value<X" : lambda x: x<x...}
+        method to create a bins dict by Gini Index technique each key is a string representations of the bin and its value is a function
+        to check if some value belongs to the bin example {"value<X" : lambda x: x<x...}
         Attributes:
             data(list) : list of lines in data set each element is a list
             colIndex(int): the index of column to create bins from
@@ -150,22 +148,14 @@ class Discretization:
             if some value belongs to the bin example {"value<X" : lambda x: x<x...}
             Attributes:
         """
-        pass
+        splits = self.miningCalculator.getListWithBestValueSplitsOfDataByGini(data, structure, colIndex, numOfBins - 1)
+        splits.sort()
+        bins = {"value<=" + str(splits[0]): lambda x: x < splits[0]}
+        for i in range(1, numOfBins - 1):
+            bins[str(splits[i - 1]) + '<value<=' + str(splits[i])] = (lambda x: splits[i - 1] < x <= splits[i])
+        bins["value>" + str(splits[len(splits) - 1])] = (lambda x: x > splits[len(splits) - 1])
+        return bins
 
-    def createBinsByClustering(self, data, colIndex, numOfBins):
-        """
-        method to create a bins dict by Clustering technique each key is a string representations of the bin and its value is a function to check
-        if some value belongs to the bin example {"value<X" : lambda x: x<x...}
-        Attributes:
-            data(list) : list of lines in data set each element is a list
-            colIndex(int): the index of column to create bins from
-            numOfBins(int): number of bins to create
-        Returns:
-            dict: bins dict by Clustering technique each key is a string representations of the bin and its value is a function to check
-            if some value belongs to the bin example {"value<X" : lambda x: x<x...}
-            Attributes:
-        """
-        pass
 
 
 

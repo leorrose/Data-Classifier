@@ -44,6 +44,17 @@ class TestDataLoader(unittest.TestCase):
                           ["F", "Israel", "value<=640.0", "High"], ["M", "Israel", "value>640.0", "Medium"],
                           ["M", "Diaspora", "value>640.0", "High"]], self.dataTwo)
 
+    def test_discretizationData_ByGini(self):
+        self.discretization.discretizationData(self.data, [], self.structure, 2, "Gini")
+        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "Gini")
+
+        self.assertEqual([["value<=10.0", "no"], ["value<=10.0", "yes"], ["value<=10.0", "no"],
+                          ["value>10.0", "yes"], ["value>10.0", "yes"]], self.data)
+
+        self.assertEqual([["F", "Israel", "value<=577.5", "Low"], ["F", "Diaspora", "value>577.5", "Medium"],
+                          ["F", "Israel", "value>577.5", "High"], ["M", "Israel", "value>577.5", "Medium"],
+                          ["M", "Diaspora", "value>577.5", "High"]], self.dataTwo)
+
     def test_discretizationData_ByEqualWidth(self):
         self.discretization.discretizationData(self.data, [], self.structure, 2, "EqualWidth")
         self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "EqualWidth")
@@ -95,6 +106,13 @@ class TestDataLoader(unittest.TestCase):
 
         self.assertEqual(["value<=10.0", "value>10.0"], list(bins.keys()))
         self.assertEqual(["value<=6.5", "6.5<value<=10.0", "value>10.0"], list(binsTwo.keys()))
+
+    def test_createBinsByGiniIndex(self):
+        bins = self.discretization.createBinsByGiniIndex(self.data, self.structure, 0, 2)
+        binsTwo = self.discretization.createBinsByGiniIndex(self.data, self.structure, 0, 3)
+
+        self.assertEqual(["value<=10.0", "value>10.0"], list(bins.keys()))
+        self.assertEqual(["value<=10.0", "10.0<value<=13.5", "value>13.5"], list(binsTwo.keys()))
 
 
 if __name__ == '__main__':
