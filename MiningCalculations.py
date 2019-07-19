@@ -20,7 +20,7 @@ class MiningCalculator:
         classIndex, entropy = structure['class']['index'], 0
         for value in structure['class']['values']:
             newData = list(filter(lambda y: y[classIndex] == value, data))
-            p = len(newData) / len(data)
+            p = len(newData) / len(data) if len(data) > 0 else 1
             entropy += (-1) * (p * log2(p)) if p > 0 else 0
         return round(entropy, 3)
 
@@ -132,7 +132,7 @@ class MiningCalculator:
         maxInfoGain, bestSplit = 0, None
         for colName in list(structure.keys())[:-1]:
             infoGain = self.calcInfoGainByColumnSplit(data, structure, colName)
-            if infoGain <= maxInfoGain:
+            if infoGain >= maxInfoGain:
                 maxInfoGain = infoGain
                 bestSplit = colName
         return bestSplit
@@ -219,7 +219,7 @@ class MiningCalculator:
         classIndex, result, lenData = structure['class']['index'], 1, len(data)
         for value in structure['class']['values']:
             newData = list(filter(lambda x: x[classIndex] == value, data))
-            p = len(newData) / lenData
+            p = len(newData) / lenData if lenData > 0 else 1
             result -= (p*p)
         return round(result, 3)
 
@@ -385,7 +385,7 @@ class MiningCalculator:
             newData = list(filter(lambda x: x[colIndex] == value, data))
             p = len(newData) / len(data) if len(newData) != 0 else 1
             splitInfo += (-1) * p * log2(p)
-        return self.calcGainRatioSplitByColumn(data, structure, colIName) / splitInfo
+        return round(self.calcInfoGainByColumnSplit(data, structure, colIName) / splitInfo , 3)
 
     def findBestColumnSplitByGainRatio(self, data, structure):
         """
@@ -401,7 +401,7 @@ class MiningCalculator:
         maxGainRatio, bestSplit = 0, None
         for colName in list(structure.keys())[:-1]:
             GainRatio = self.calcGainRatioSplitByColumn(data, structure, colName)
-            if GainRatio <= maxGainRatio:
+            if GainRatio >= maxGainRatio:
                 maxGainRatio = GainRatio
                 bestSplit = colName
         return bestSplit
@@ -417,3 +417,75 @@ class MiningCalculator:
         for i in range(0, len(data)):
             if data.count(data[i]) > 1:
                 data.remove(data[i])
+
+    def mostCommonClassAttribute(self, data, structure):
+        """
+        method to find most common attribute in class column
+        Attributes:
+            data(list) : list of values
+            structure(dict): the structure of data set returns {} if data set is empty, each element is
+                            columnName : {'index': index , 'values': [values]} or
+                            columnName : {'index': index , 'values': ["Numeric"]
+        Returns:
+            String: most common attribute in class column
+        """
+        maxCount, classIndex, mostCommonClassAttribute = 0, structure['class']['index'], None
+        for value in structure['class']['values']:
+            newData = list(filter(lambda y: y[classIndex] == value, data))
+            if len(newData) >= maxCount:
+                maxCount = len(newData)
+                mostCommonClassAttribute = value
+        return mostCommonClassAttribute
+
+    def allRowsWithSameClass(self, data, structure):
+        """
+        method to check if all rows have the same class attribute
+        Attributes:
+            data(list) : list of values
+            structure(dict): the structure of data set returns {} if data set is empty, each element is
+                            columnName : {'index': index , 'values': [values]} or
+                            columnName : {'index': index , 'values': ["Numeric"]
+        Returns:
+            Boolean: true if all rows have the same class attribute
+        """
+        classIndex = structure['class']['index']
+        for value in structure['class']['values']:
+            newData = list(filter(lambda x: x[classIndex] == value, data))
+            if len(newData) == len(data):
+                return True
+        return False
+
+    def calcNumberOfMajorityClassRows(self, data, structure):
+        """
+        method to calc number of rows with majority class value
+        Attributes:
+            data(list) : list of values
+            structure(dict): the structure of data set returns {} if data set is empty, each element is
+                            columnName : {'index': index , 'values': [values]} or
+                            columnName : {'index': index , 'values': ["Numeric"]
+        Returns:
+            Boolean: number of rows with majority class value
+        """
+        maxCount, classIndex = 0, structure['class']['index']
+        for value in structure['class']['values']:
+            newData = list(filter(lambda y: y[classIndex] == value, data))
+            if len(newData) >= maxCount:
+                maxCount = len(newData)
+        return maxCount
+
+    def getSplitFunc(self, splitType):
+        """
+        method to get a column split function by string
+        Attributes:
+            splitType(list) : split function name
+        Returns:
+            function: split function by string
+        """
+        if splitType.upper() == "INFO GAIN":
+            return self.findBestColumnSplitByInfoGain
+        elif splitType.upper() == "GAIN RATIO":
+            return self.findBestColumnSplitByGainRatio
+        elif splitType.upper() == "GINI INDEX":
+            return self.findBestColumnSplitByGini
+        return None
+

@@ -96,6 +96,14 @@ class TestDataLoader(unittest.TestCase):
     def test_findBestColumnSplitByGini(self):
         self.assertEqual("Test", self.calculator.findBestColumnSplitByGini(self.dataTwo, self.structureTwo))
 
+    def test_calcGainRatioSplitByColumn(self):
+        self.assertEqual(0.176, self.calculator.calcGainRatioSplitByColumn(self.dataTwo, self.structureTwo, "Gender"))
+        self.assertEqual(0.176, self.calculator.calcGainRatioSplitByColumn(self.dataTwo, self.structureTwo, "Place"))
+        self.assertEqual(0.474, self.calculator.calcGainRatioSplitByColumn(self.dataTwo, self.structureTwo, "Test"))
+
+    def test_findBestColumnSplitByGainRatio(self):
+        self.assertEqual("Test", self.calculator.findBestColumnSplitByGainRatio(self.dataTwo, self.structureTwo))
+
 
 if __name__ == '__main__':
     unittest.main()

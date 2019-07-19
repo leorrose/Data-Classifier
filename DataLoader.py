@@ -5,25 +5,30 @@ class Loader:
     """
     class to load data form csv file, create test and training sets of data for Data mining process
     """
-    def __init__(self, pathOfFile):
+    def __init__(self):
         """"
         Ctor for DataLoader
         Attributes:
             pathOfFile(string): the path to the data set csv file
         """
-        self.dataSetPath = pathOfFile
         self.testSet = []
         self.trainingSet = []
         self.structure = []
 
-    def loadData(self):
+    def loadData(self, pathOfFile):
         """
         method to read data csv file and build data structure, training data set and test data set. data is saved in class parameters
+        Attributes:
+            pathOfFile(string): the path to the data set csv file
+        Raise:
+            EnvironmentError
         """
-        with open(self.dataSetPath) as csv_file:
+        with open(pathOfFile) as csv_file:
             lines, csv_reader = [], csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
                 lines += [row]
+        if len(lines) == 0 or len(lines[0]) <= 1:
+            raise EnvironmentError
         self.buildStructure(lines)
         self.buildTrainingSet(lines[1:])
         self.buildTestSet(lines[1:])
@@ -106,4 +111,14 @@ class Loader:
         """
         self.testSet = lines[int(((len(lines)*2)/3)+0.5):]
 
-
+    def loadRule(self, pathOfRulesFile):
+        """
+        method to read rules from rules files
+        Attributes:
+            pathOfRulesFile(string): the path to the rules txt file
+        Raise:
+            EnvironmentError
+        """
+        with open(pathOfRulesFile) as txt_file:
+            lines = txt_file.readlines()
+        return lines
