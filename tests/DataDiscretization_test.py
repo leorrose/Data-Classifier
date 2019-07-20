@@ -2,7 +2,7 @@ import unittest
 from DataDiscretization import Discretization
 
 
-class TestDataLoader(unittest.TestCase):
+class TestDataDiscretization(unittest.TestCase):
     discretization = None
     data = []
     dataTwo = []

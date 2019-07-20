@@ -2,7 +2,7 @@ import unittest
 from MiningCalculations import MiningCalculator
 
 
-class TestDataLoader(unittest.TestCase):
+class TestMiningCalculations(unittest.TestCase):
     calculator = None
     dataOne = []
     dataTwo = []
@@ -103,6 +103,49 @@ class TestDataLoader(unittest.TestCase):
 
     def test_findBestColumnSplitByGainRatio(self):
         self.assertEqual("Test", self.calculator.findBestColumnSplitByGainRatio(self.dataTwo, self.structureTwo))
+
+    def test_removeDuplicatesInList(self):
+        data = [0, 0, 0, 1, 1, 1, 2, 2]
+
+        self.calculator.removeDuplicatesInList(data)
+
+        self.assertEqual([0, 1, 2], data)
+
+    def test_mostCommonClassAttribute(self):
+        mostCommon = self.calculator.mostCommonClassAttribute(self.dataOne, self.structureOne)
+
+        self.assertEqual("yes", mostCommon)
+
+    def test_allRowsWithSameClass(self):
+        answer = self.calculator.allRowsWithSameClass(self.dataOne, self.structureOne)
+
+        self.assertEqual(False, answer)
+
+    def test_calcNumberOfMajorityClassRows(self):
+        answer = self.calculator.calcNumberOfMajorityClassRows(self.dataOne, self.structureOne)
+
+        self.assertEqual(3, answer)
+
+    def test_getSplitFunc(self):
+        answer1 = self.calculator.getSplitFunc("Info Gain")
+        answer2 = self.calculator.getSplitFunc("Gini Index")
+        answer3 = self.calculator.getSplitFunc("Gain Ratio")
+        answer4 = self.calculator.getSplitFunc("afoowa")
+
+        self.assertEqual(self.calculator.findBestColumnSplitByInfoGain, answer1)
+        self.assertEqual(self.calculator.findBestColumnSplitByGini, answer2)
+        self.assertEqual(self.calculator.findBestColumnSplitByGainRatio, answer3)
+        self.assertEqual(None, answer4)
+
+    def test_calcProbabilityOfValGivenClassWithLaplaceCorrection(self):
+        answer = self.calculator.calcProbabilityOfValGivenClassWithLaplaceCorrection(self.dataTwo, 0, "M", "High", 2)
+
+        self.assertEqual(0.286, answer)
+
+    def test_calcProbabilityOfClassValueWithLaplaceCorrection(self):
+        answer = self.calculator.calcProbabilityOfClassValueWithLaplaceCorrection(self.dataTwo, "High", 3)
+
+        self.assertEqual(0.375, answer)
 
 
 if __name__ == '__main__':

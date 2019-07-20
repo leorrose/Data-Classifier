@@ -414,9 +414,12 @@ class MiningCalculator:
         Returns:
             list: data with no duplicates
         """
-        for i in range(0, len(data)):
-            if data.count(data[i]) > 1:
-                data.remove(data[i])
+        newDataList = []
+        for i in data:
+            if newDataList.count(i) == 0:
+                newDataList.append(i)
+        data.clear()
+        data += newDataList
 
     def mostCommonClassAttribute(self, data, structure):
         """
@@ -489,3 +492,32 @@ class MiningCalculator:
             return self.findBestColumnSplitByGini
         return None
 
+    def calcProbabilityOfValGivenClassWithLaplaceCorrection(self, data, colIndex, val, classVal, numberOfValInColumn):
+        """
+        method calculate p(xi|ci) with laplace correction where xi is a value in column and ci is a class value
+        Attributes:
+            data(list) : list of rows in file
+            colIndex(int) : the column index
+            val(String): val of xi
+            classVal(String): val of ci
+            numberOfValInColumn(int): number of different values in column
+        Returns:
+            float: p(xi|xi) with laplace correction
+        """
+        newData = list(filter(lambda x: x[colIndex] == val and x[len(x)-1] == classVal, data))
+        probability = (len(newData) + 1) / (len(data) + numberOfValInColumn) if len(data) > 0 else 0
+        return round(probability, 3)
+
+    def calcProbabilityOfClassValueWithLaplaceCorrection(self, data, classVal, numberOfClassValues):
+        """
+        method calculate p(ci) with laplace correction where ci is a class value
+        Attributes:
+            data(list) : list of rows in file
+            classVal(String): val of ci
+            numberOfClassValues(int): number of different class values
+        Returns:
+            float: p(ci) with laplace correction
+        """
+        newData = list(filter(lambda x: x[len(x)-1] == classVal, data))
+        probability = (len(newData) + 1) / (len(data) + numberOfClassValues) if len(data) > 0 else 0
+        return round(probability, 3)

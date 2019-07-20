@@ -2,7 +2,7 @@ import unittest
 from DataCleaner import Cleaner
 
 
-class TestDataLoader(unittest.TestCase):
+class TestDataCleaner(unittest.TestCase):
     dataCleaner = None
     dataWithNoCleaningNeeded = []
     dataWithMissingClass = []

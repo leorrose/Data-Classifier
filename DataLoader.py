@@ -3,13 +3,11 @@ import csv
 
 class Loader:
     """
-    class to load data form csv file, create test and training sets of data for Data mining process
+    class to load data form csv file, create test and training sets of data for data mining process
     """
     def __init__(self):
         """"
         Ctor for DataLoader
-        Attributes:
-            pathOfFile(string): the path to the data set csv file
         """
         self.testSet = []
         self.trainingSet = []
@@ -110,15 +108,3 @@ class Loader:
             lines(list): the lines in data set without first line of column names
         """
         self.testSet = lines[int(((len(lines)*2)/3)+0.5):]
-
-    def loadRule(self, pathOfRulesFile):
-        """
-        method to read rules from rules files
-        Attributes:
-            pathOfRulesFile(string): the path to the rules txt file
-        Raise:
-            EnvironmentError
-        """
-        with open(pathOfRulesFile) as txt_file:
-            lines = txt_file.readlines()
-        return lines

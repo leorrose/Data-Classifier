@@ -25,10 +25,11 @@ class Classifier:
         if classifierType.upper() == "ID3":
             rules = self.buildId3Classifier(data, structure, self.calculator.calcNumberOfMajorityClassRows(data, structure), splitFunc)
             return rules
-        elif classifierType.upper() == "NAIVEBAYES":
-            pass
-        else:
-            pass
+        elif classifierType.upper() == "NAIVE BAYES":
+            rules = self.buildNaiveBayesClassifier(structure, data)
+            return rules
+
+    # ID3 Classifier
 
     def buildId3Classifier(self, data, structure, mostCommonClassAttribute, splitFunc):
         """
@@ -147,7 +148,138 @@ class Classifier:
             rules(i, rule, allRules)
         return allRules
 
-    def classifyTest(self, testData, structure, rules, classifierType):
+    # naive Bayes classifier
+
+    def buildNaiveBayesClassifier(self, structure, data):
+        """
+        method to build rules by naive bayes classifier
+        Attributes:
+                data(list) : list of lines in files each element is a list
+                structure(dict): the structure of data set returns {} if data set is empty, each element is
+                            columnName : {'index': index , 'values': [values]} or
+                            columnName : {'index': index , 'values': ["Numeric"]
+        Returns:
+            list:  list of rules each element is a s string rule
+        """
+        rules = []
+        ProbabilityDict = self.createProbabilityDict(structure, data)
+        combinations = self.createColumnValuesCombination(structure)
+        classValues = structure['class']['values']
+        for combination in combinations:
+            flag, rule = False, ""
+            for i in combination:
+                if flag:
+                    rule += ", " + i.replace('=', ' == ')
+                else:
+                    rule += i.replace('=', ' == ')
+                    flag = True
+            rule += " => class" + " == " + self.classOfCombination(data, combination, ProbabilityDict, classValues)
+            rules += [rule]
+        return rules
+
+    def classOfCombination(self, data, combination, ProbabilityDict, classValues):
+        """
+        method to find the class value of a combination
+        Attributes:
+            combination(list): combination of column values
+            ProbabilityDict(Dict) : dictionary with Probability of value given class example {class value: {column value: probability}...}
+            classValues(list): values of class
+        Returns:
+            String:  class value of a combination
+        """
+        maxProbability, classOfCombination = 0, None
+        for classValue in classValues:
+            Probability = self.calcProbabilityOfCombinationGivenClass(combination, ProbabilityDict, classValue)
+            Probability *= self.calculator.calcProbabilityOfClassValueWithLaplaceCorrection(data, classValue, len(classValues))
+            if Probability >= maxProbability:
+                maxProbability = Probability
+                classOfCombination = classValue
+        return classOfCombination
+
+    def calcProbabilityOfCombinationGivenClass(self, combination, ProbabilityDict, classValue):
+        """
+        method to calc p(x| ci) x is a combination and ci is a class value
+        Attributes:
+            combination(list): combination of column values
+            ProbabilityDict(Dict) : dictionary with Probability of value given class example {class value: {column value: probability}...}
+            classValue(String): value of class
+        Returns:
+            float:  p(x| ci) x is a combination and ci is a class value
+        """
+        probability = 1
+        for element in combination:
+            for name, probabilityValue in ProbabilityDict[classValue].items():
+                if element == name:
+                    probability *= probabilityValue
+        return round(probability, 3)
+
+    def createProbabilityDict(self, structure, data):
+        """
+        method to create a dictionary with Probability of value given class
+        Attributes:
+            data(list) : list of lines in files each element is a list
+            structure(dict): the structure of data set returns {} if data set is empty, each element is
+                        columnName : {'index': index , 'values': [values]} or
+                        columnName : {'index': index , 'values': ["Numeric"]
+        Returns:
+            Dict: dictionary with Probability of value given class example {class value: {column value: probability}...}
+        """
+        probabilityDict, classValues = {}, structure['class']['values']
+        for column, values in structure.items():
+            if column != 'class':
+                for value in values['values']:
+                    for classValue in classValues:
+                        if classValue not in probabilityDict:
+                            probabilityDict[classValue] =\
+                                {column + '=' + value:
+                                     self.calculator.calcProbabilityOfValGivenClassWithLaplaceCorrection(data,
+                                                                                                         values['index'], value, classValue,
+                                                                                                         len(values['values']))}
+                        else:
+                            probabilityDict[classValue][column + '=' + value] = \
+                                self.calculator.calcProbabilityOfValGivenClassWithLaplaceCorrection(data, values['index'], value, classValue,
+                                                                                                    len(values['values']))
+        return probabilityDict
+
+    def createColumnValuesCombination(self, structure):
+        """
+        method to create all combination of column values
+        Attributes:
+            structure(dict): the structure of data set returns {} if data set is empty, each element is
+                        columnName : {'index': index , 'values': [values]} or
+                        columnName : {'index': index , 'values': ["Numeric"]
+        Returns:
+            list: combination list
+        """
+        combinationList, flag = [], True
+        for columnName, columnValues in list(structure.items())[:-1]:
+            values = list(map(lambda x: columnName + '=' + x, columnValues['values']))
+            if flag:
+                combinationList, flag = list(map(lambda x: [x], values)), False
+            else:
+                combinationList = self.addColumnValuesTolist(combinationList, values)
+        return combinationList
+
+    def addColumnValuesTolist(self, combinationList, values):
+        """
+        method to add add column values to list creating more sublist of combinations
+        Attributes:
+            combinationList (list): the list of combinations
+            values(list): values to add to lists
+        Returns:
+            list: new combination list
+        """
+        newCombinationList = []
+        for value in values:
+            combinationCopy = copy.deepcopy(combinationList)
+            for combination in combinationCopy:
+                combination += [value]
+            newCombinationList += combinationCopy
+        return newCombinationList
+
+    # test classification
+
+    def classifyTest(self, testData, structure, rules):
         """
         method to classify test data by given classifier type
         Parameters:
@@ -157,26 +289,6 @@ class Classifier:
                             columnName : {'index': index , 'values': ["Numeric"]
                 rules(list): list of rules
                 classifierType(String): classifier type
-        Returns:
-            list: classified Data
-        """
-        if classifierType.upper() == "ID3":
-            newTestData = self.classifyTestById3Rules(testData, structure, rules)
-            return newTestData
-        elif classifierType.upper() == "NAIVEBAYES":
-            pass
-        else:
-            pass
-
-    def classifyTestById3Rules(self, testData, structure, rules):
-        """
-        method to classify test data by id3 algorithm
-        Parameters:
-                testData(list) : list of lines in files each element is a list
-                structure(dict): the structure of data set returns {} if data set is empty, each element is
-                            columnName : {'index': index , 'values': [values]} or
-                            columnName : {'index': index , 'values': ["Numeric"]
-                rules(list): list of rules
         Returns:
             list: classified Data
         """
@@ -216,7 +328,7 @@ class Classifier:
         newRules = []
         for rule in rules:
             rule = rule.replace(',', '==').replace('=>', '==').split('==')
-            for i in range(0,len(rule)):
+            for i in range(0, len(rule)):
                 rule[i] = rule[i].strip()
             newRules += [rule]
         return newRules
@@ -234,7 +346,7 @@ class Classifier:
         for i, j in zip(newData, oldData):
             if i != j:
                 error += 1
-        return ((len(newData) - error) / len(newData)) * 100
+        return ((len(newData) - error) / len(newData)) * 100 if len(newData) > 0 else 100
 
     def createNewStructureWithoutItem(self, structure, itemName):
         """
@@ -250,9 +362,6 @@ class Classifier:
         newStructure = copy.deepcopy(structure)
         del newStructure[itemName]
         return newStructure
-
-    def buildNaiveBayesClassifier(self):
-        pass
 
 
 class DecisionTree:
@@ -273,8 +382,8 @@ class DecisionTree:
 
     def addSubDecisionTree(self, node):
         """
-        function to add sons to a node
-        Parameters:
+        method to add sons to a node
+        Attributes:
             node (list): son to add to current node sons List
         """
         if self.SubDecisionTree is None:

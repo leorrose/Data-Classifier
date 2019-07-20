@@ -21,11 +21,7 @@ class Discretization:
             typeOfDiscretization(string): what method of discretization if input does not fit a method entropy based discretization
             will be applied
         """
-        if numOfBins < len(structure['class']['values']):
-            raise ValueError
-
         for columnName, value in structure.items():
-            print("discretization on " + columnName)
             if value["values"] == ['Numeric']:
                 colIndex = value['index']
                 bins = []

@@ -2,6 +2,7 @@ import csv
 
 
 class CreateFile:
+    """ class for creating files in the process"""
     def __init__(self):
         pass
 

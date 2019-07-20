@@ -9,7 +9,7 @@ class TestDataLoader(unittest.TestCase):
     dataWithMissingValues = []
 
     def setUp(self):
-        self.dataLoader = Loader("")
+        self.dataLoader = Loader()
         self.dataWithEvenInstances = [["Age", "Income", "class"], ["13", "1000", "yes"], ["18", "5000", "no"],
                                       ["15", "3000", "no"], ["14", "800", "yes"]]
         self.dataWithOddInstances = [["Age", "Income", "class"], ["13", "1000", "yes"], ["18", "5000", "no"],
