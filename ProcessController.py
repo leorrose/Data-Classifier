@@ -119,7 +119,6 @@ class BuildClassifierProcess:
         except EnvironmentError:
             return labelWidget.configure(text=labelWidget.cget("text") +
                                               "Problem with file\\ file path. please check file is not empty and file path is correct!")
-
         except:
             return labelWidget.configure(text=labelWidget.cget("text") +
                                               "An Error occurred please check file and inputs and start again!")

@@ -186,8 +186,11 @@ class MiningCalculator:
         self.fillBestSplitsInDataByInfoGainIntoDict(data, structure, colName, numOfSplits, splitsList, 0)
         for lists in list(splitsList.values())[1:]:
             while len(lists) > 0:
-                splitOne = lists.pop()
-                splitTwo = lists.pop()
+                splitOne, splitTwo = [], []
+                if len(lists) > 0:
+                    splitOne = lists.pop()
+                if len(lists) > 0:
+                    splitTwo = lists.pop()
                 if splitOne and splitTwo:
                     if splitOne[1] >= splitTwo[1]:
                         newSplitsList.append(splitOne[0])
@@ -311,8 +314,11 @@ class MiningCalculator:
         self.fillDictWithBestValueSplitsOfDataByGini(data, structure, colIndex, numOfSplits, splitsList, 0)
         for lists in list(splitsList.values())[1:]:
             while len(lists) > 0:
-                splitOne = lists.pop()
-                splitTwo = lists.pop()
+                splitOne, splitTwo = [], []
+                if len(lists) > 0:
+                    splitOne = lists.pop()
+                if len(lists) > 0:
+                    splitTwo = lists.pop()
                 if splitOne and splitTwo:
                     if splitOne[1] <= splitTwo[1]:
                         newSplitsList.append(splitOne[0])

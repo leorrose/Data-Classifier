@@ -82,7 +82,7 @@ class Discretization:
         colData = list(map(lambda x: float(x[colIndex]), data))
         minVal, maxVal = min(colData), max(colData)
         width = round(((maxVal - minVal) / numOfBins), 3)
-        bins = {"value<="+str(width): lambda x: x < width}
+        bins = {"value<="+str(width): lambda x: x <= width}
         for i in range(1, numOfBins-1):
             bins[str(width) + '<value<=' + str(width+width)] = (lambda x:  width < x <= width + width)
             width = width + width
@@ -135,9 +135,10 @@ class Discretization:
         """
         splits = self.miningCalculator.getBestSplitsInDataByInfoGain(data, structure, colName, numOfBins-1)
         splits.sort()
-        bins = {"value<="+str(splits[0]): lambda x: x < splits[0]}
-        for i in range(1, numOfBins-1):
-            bins[str(splits[i-1]) + '<value<=' + str(splits[i])] = (lambda x:  splits[i-1] < x <= splits[i])
+        bins = {"value<="+str(splits[0]): lambda x: x <= splits[0]}
+        if len(splits) > 1:
+            for i in range(1, numOfBins-1):
+                bins[str(splits[i-1]) + '<value<=' + str(splits[i])] = (lambda x:  splits[i-1] < x <= splits[i])
         bins["value>" + str(splits[len(splits)-1])] = (lambda x: x > splits[len(splits)-1])
         return bins
 
@@ -156,9 +157,10 @@ class Discretization:
         """
         splits = self.miningCalculator.getListWithBestValueSplitsOfDataByGini(data, structure, colIndex, numOfBins - 1)
         splits.sort()
-        bins = {"value<=" + str(splits[0]): lambda x: x < splits[0]}
-        for i in range(1, numOfBins - 1):
-            bins[str(splits[i - 1]) + '<value<=' + str(splits[i])] = (lambda x: splits[i - 1] < x <= splits[i])
+        bins = {"value<=" + str(splits[0]): lambda x: x <= splits[0]}
+        if len(splits) > 1:
+            for i in range(1, numOfBins - 1):
+                bins[str(splits[i - 1]) + '<value<=' + str(splits[i])] = (lambda x: splits[i - 1] < x <= splits[i])
         bins["value>" + str(splits[len(splits) - 1])] = (lambda x: x > splits[len(splits) - 1])
         return bins
 
