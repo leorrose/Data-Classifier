@@ -3,7 +3,7 @@ A data mining project written in python, includes:
 
 1. Data cleaning - cleaning a file before data mining process.
 
-2. Data discretization - discretization of data by Entropy, Equal width, Equal depth and Gini index (user selection) into Number of given bins  before data mining process.
+2. Data discretization - discretization of data by Entropy, Equal width, Equal depth and Gini index (user selection) into number of given bins  before data mining process.
 
 3. Classifier building - building classifier (ID3 or Naive Bayes) user selects classifier type and classifier split function (in ID3 ) - Information Gain, Gain Ratio, Gini Index.
 
