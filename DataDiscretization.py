@@ -26,11 +26,11 @@ class Discretization:
                 colIndex = value['index']
                 bins = []
                 self.sortDataByAscendingOrderOFValuesInColumn(trainData, colIndex)
-                if typeOfDiscretization.upper() == "EQUALWIDTH":
+                if typeOfDiscretization.upper() == "EQUAL WIDTH":
                     bins = self.createBinsByEqualWidth(trainData, colIndex, numOfBins)
-                elif typeOfDiscretization.upper() == "EQUALDEPTH":
+                elif typeOfDiscretization.upper() == "EQUAL DEPTH":
                     bins = self.createBinsByEqualDepth(trainData, colIndex, numOfBins)
-                elif typeOfDiscretization.upper() == "GINI":
+                elif typeOfDiscretization.upper() == "GINI INDEX":
                     bins = self.createBinsByGiniIndex(trainData, structure, colIndex, numOfBins)
                 elif typeOfDiscretization.upper() == "ENTROPY":
                     bins = self.createBinsByEntropy(trainData, structure, columnName, numOfBins)
@@ -109,8 +109,10 @@ class Discretization:
         bins = {"value<=" + str(max(splittedData[0])): lambda x: x <= max(splittedData[0])}
         index = 1
         while index < numOfBins-1:
-            bins[str(max(splittedData[index-1])) + '<value<=' + str(max(splittedData[index]))] = \
-                (lambda x: max(splittedData[index-1]) < x <= max(splittedData[index]))
+            if max(splittedData[index-1]) != max(splittedData[index]):
+                val1 = max(splittedData[index-1])
+                val2 = max(splittedData[index])
+                bins[str(val1) + '<value<=' + str(val2)] = (lambda x: val1 < x <= val2)
             index += 1
         bins["value>" + str(max(splittedData[index-1]))] = (lambda x: x > max(splittedData[index-1]))
         return bins

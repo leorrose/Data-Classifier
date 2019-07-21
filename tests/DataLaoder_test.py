@@ -52,19 +52,19 @@ class TestDataLoader(unittest.TestCase):
                          self.dataLoader.getColumnsName(self.dataWithMissingValues))
 
     def test_getColumnValues_dataWithEvenInstances(self):
-        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(0, self.dataWithEvenInstances))
-        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(1, self.dataWithEvenInstances))
-        self.assertEqual(["yes", "no"], self.dataLoader.getColumnValues(2, self.dataWithEvenInstances))
+        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(0, self.dataWithEvenInstances, 2))
+        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(1, self.dataWithEvenInstances, 2))
+        self.assertEqual(["yes", "no"], self.dataLoader.getColumnValues(2, self.dataWithEvenInstances, 2))
 
     def test_getColumnValues_dataWithOddInstances(self):
-        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(0, self.dataWithOddInstances))
-        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(1, self.dataWithOddInstances))
-        self.assertEqual(["yes", "no"], self.dataLoader.getColumnValues(2, self.dataWithOddInstances))
+        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(0, self.dataWithOddInstances, 2))
+        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(1, self.dataWithOddInstances, 2))
+        self.assertEqual(["yes", "no"], self.dataLoader.getColumnValues(2, self.dataWithOddInstances, 2))
 
     def test_getColumnValues_dataWithMissingValues(self):
-        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(0, self.dataWithMissingValues))
-        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(1, self.dataWithMissingValues))
-        self.assertEqual(["yes", "no"], self.dataLoader.getColumnValues(2, self.dataWithMissingValues))
+        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(0, self.dataWithMissingValues, 2))
+        self.assertEqual(["Numeric"], self.dataLoader.getColumnValues(1, self.dataWithMissingValues, 2))
+        self.assertEqual(["yes", "no"], self.dataLoader.getColumnValues(2, self.dataWithMissingValues, 2))
 
     def test_isNumeric_dataWithEvenInstances(self):
         self.assertEqual(True, self.dataLoader.isNumeric(0, self.dataWithEvenInstances))

@@ -385,7 +385,8 @@ class MiningCalculator:
             newData = list(filter(lambda x: x[colIndex] == value, data))
             p = len(newData) / len(data) if len(newData) != 0 else 1
             splitInfo += (-1) * p * log2(p)
-        return round(self.calcInfoGainByColumnSplit(data, structure, colIName) / splitInfo , 3)
+        splitInfo = 1 if splitInfo == 0 else splitInfo
+        return round(self.calcInfoGainByColumnSplit(data, structure, colIName) / splitInfo, 3)
 
     def findBestColumnSplitByGainRatio(self, data, structure):
         """

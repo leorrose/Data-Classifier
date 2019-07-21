@@ -111,14 +111,14 @@ class TestDataClassifier(unittest.TestCase):
 
     def test_classOfCombination(self):
         ProbabilityList = self.classifier.createProbabilityDict(self.structure, self.data)
-        classValue = self.classifier.classOfCombination(self.data, ["Gender=F", "Place=Diaspora", "Test=0-600"],
+        classValue = self.classifier.classOfCombination(self.data, ["Gender=>F", "Place=>Diaspora", "Test=>0-600"],
                                                                              ProbabilityList, ['Low', 'Medium', 'High'])
 
         self.assertEqual("Medium", classValue)
 
     def test_calcProbabilityOfCombinationGivenClass(self):
         ProbabilityList = self.classifier.createProbabilityDict(self.structure, self.data)
-        probability = self.classifier.calcProbabilityOfCombinationGivenClass(["Gender=F", "Place=Diaspora", "Test=0-600"],
+        probability = self.classifier.calcProbabilityOfCombinationGivenClass(["Gender=>F", "Place=>Diaspora", "Test=>0-600"],
                                                                              ProbabilityList, "Medium")
 
         self.assertEqual(0.02, probability)
@@ -126,25 +126,25 @@ class TestDataClassifier(unittest.TestCase):
     def test_createProbabilityList(self):
         probabilityDict = self.classifier.createProbabilityDict(self.structure, self.data)
 
-        self.assertEqual({'High': {'Gender=F': 0.286, 'Gender=M': 0.286,
-                                   'Place=Diaspora': 0.286, 'Place=Israel': 0.286,
-                                   'Test=0-600': 0.125, 'Test=600-700': 0.25, 'Test=Over 700': 0.25},
-                          'Low': {'Gender=F': 0.286, 'Gender=M': 0.143,
-                                  'Place=Diaspora': 0.143, 'Place=Israel': 0.286, 'Test=0-600': 0.25,
-                                  'Test=600-700': 0.125, 'Test=Over 700': 0.125},
-                          'Medium': {'Gender=F': 0.286, 'Gender=M': 0.286, 'Place=Diaspora': 0.286,
-                                     'Place=Israel': 0.286, 'Test=0-600': 0.25, 'Test=600-700': 0.25,
-                                     'Test=Over 700': 0.125}}, probabilityDict)
+        self.assertEqual({'High': {'Gender=>F': 0.286, 'Gender=>M': 0.286,
+                                   'Place=>Diaspora': 0.286, 'Place=>Israel': 0.286,
+                                   'Test=>0-600': 0.125, 'Test=>600-700': 0.25, 'Test=>Over 700': 0.25},
+                          'Low': {'Gender=>F': 0.286, 'Gender=>M': 0.143,
+                                  'Place=>Diaspora': 0.143, 'Place=>Israel': 0.286, 'Test=>0-600': 0.25,
+                                  'Test=>600-700': 0.125, 'Test=>Over 700': 0.125},
+                          'Medium': {'Gender=>F': 0.286, 'Gender=>M': 0.286, 'Place=>Diaspora': 0.286,
+                                     'Place=>Israel': 0.286, 'Test=>0-600': 0.25, 'Test=>600-700': 0.25,
+                                     'Test=>Over 700': 0.125}}, probabilityDict)
 
     def test_createColumnValuesCombination(self):
         combinations = self.classifier.createColumnValuesCombination(self.structure)
 
-        self.assertEqual([['Gender=M', 'Place=Diaspora', 'Test=0-600'], ['Gender=F', 'Place=Diaspora', 'Test=0-600'],
-                          ['Gender=M', 'Place=Israel', 'Test=0-600'], ['Gender=F', 'Place=Israel', 'Test=0-600'],
-                          ['Gender=M', 'Place=Diaspora', 'Test=600-700'], ['Gender=F', 'Place=Diaspora', 'Test=600-700'],
-                          ['Gender=M', 'Place=Israel', 'Test=600-700'], ['Gender=F', 'Place=Israel', 'Test=600-700'],
-                          ['Gender=M', 'Place=Diaspora', 'Test=Over 700'], ['Gender=F', 'Place=Diaspora', 'Test=Over 700'],
-                          ['Gender=M', 'Place=Israel', 'Test=Over 700'], ['Gender=F', 'Place=Israel', 'Test=Over 700']], combinations)
+        self.assertEqual([['Gender=>M', 'Place=>Diaspora', 'Test=>0-600'], ['Gender=>F', 'Place=>Diaspora', 'Test=>0-600'],
+                          ['Gender=>M', 'Place=>Israel', 'Test=>0-600'], ['Gender=>F', 'Place=>Israel', 'Test=>0-600'],
+                          ['Gender=>M', 'Place=>Diaspora', 'Test=>600-700'], ['Gender=>F', 'Place=>Diaspora', 'Test=>600-700'],
+                          ['Gender=>M', 'Place=>Israel', 'Test=>600-700'], ['Gender=>F', 'Place=>Israel', 'Test=>600-700'],
+                          ['Gender=>M', 'Place=>Diaspora', 'Test=>Over 700'], ['Gender=>F', 'Place=>Diaspora', 'Test=>Over 700'],
+                          ['Gender=>M', 'Place=>Israel', 'Test=>Over 700'], ['Gender=>F', 'Place=>Israel', 'Test=>Over 700']], combinations)
 
     def test_addColumnValuesTolist(self):
         combinations = self.classifier.addColumnValuesTolist([["M"], ["F"]], ["Diaspora", "Israel"])

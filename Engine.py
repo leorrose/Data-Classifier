@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import ttk, filedialog, messagebox
 from ProcessController import BuildClassifierProcess
+import threading
 
 
 class Gui:
@@ -20,8 +21,6 @@ class Gui:
     def buildBuildingClassifierFrame(self):
         """"
         method to build frame of building classifier
-        Returns:
-            tkinter.Frame: frame of building classifier
         """
         self.root.geometry("500x350")
         self.root.title("Build Classifier Screen")
@@ -68,7 +67,7 @@ class Gui:
 
         fifthFrame = tkinter.Frame(frame, bg="lightblue")
         fifthFrame.pack(side=tkinter.TOP, fill=tkinter.X, padx=5, pady=5)
-        filePathLB = tkinter.Label(fifthFrame, text="csv file path: ", height=1, width=23, bg="lightblue")
+        filePathLB = tkinter.Label(fifthFrame, text="Csv file path: ", height=1, width=23, bg="lightblue")
         filePathLB.pack(side=tkinter.LEFT, fill=tkinter.X, padx=5, pady=5)
         self.filePathTF = tkinter.Text(fifthFrame, height=1, width=23, bg="White")
         self.filePathTF.pack(side=tkinter.LEFT, fill=tkinter.X, padx=5, pady=5)
@@ -90,12 +89,15 @@ class Gui:
         self.currentFrame = frame
 
     def buildMessageFrame(self):
+        """"
+        method to build frame of process massages
+        """
         self.currentFrame.destroy()
 
         frame = tkinter.Frame(self.root, bg="lightblue")
         frame.pack(side=tkinter.TOP, fill=tkinter.X, padx=5, pady=5)
 
-        self.messageLB = tkinter.Label(frame, text="",bg="White")
+        self.messageLB = tkinter.Label(frame, text="", bg="White")
         self.messageLB.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=tkinter.YES, padx=5, pady=5)
 
         goBackBT = tkinter.Button(frame, text="Back", width=23, command=self.buildBuildingClassifierFrame)
@@ -131,7 +133,7 @@ class Gui:
             setDiscretizationBins(int(self.discretizationBinsTF.get("1.0", tkinter.END)))\
             .setSavingFolderPath(self.savingfolderPathTF.get("1.0", tkinter.END).rstrip())
         self.buildMessageFrame()
-        messagebox.showinfo("Process Message", builder.startProcess(self.messageLB))
+        threading.Thread(target=builder.startProcess, args=(self.messageLB,)).start()
 
     def buildClassifierBT_event(self):
         """"

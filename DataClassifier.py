@@ -169,9 +169,9 @@ class Classifier:
             flag, rule = False, ""
             for i in combination:
                 if flag:
-                    rule += ", " + i.replace('=', ' == ')
+                    rule += ", " + i.replace('=>', ' == ')
                 else:
-                    rule += i.replace('=', ' == ')
+                    rule += i.replace('=>', ' == ')
                     flag = True
             rule += " => class" + " == " + self.classOfCombination(data, combination, ProbabilityDict, classValues)
             rules += [rule]
@@ -231,12 +231,12 @@ class Classifier:
                     for classValue in classValues:
                         if classValue not in probabilityDict:
                             probabilityDict[classValue] =\
-                                {column + '=' + value:
+                                {column + '=>' + value:
                                      self.calculator.calcProbabilityOfValGivenClassWithLaplaceCorrection(data,
                                                                                                          values['index'], value, classValue,
                                                                                                          len(values['values']))}
                         else:
-                            probabilityDict[classValue][column + '=' + value] = \
+                            probabilityDict[classValue][column + '=>' + value] = \
                                 self.calculator.calcProbabilityOfValGivenClassWithLaplaceCorrection(data, values['index'], value, classValue,
                                                                                                     len(values['values']))
         return probabilityDict
@@ -253,7 +253,7 @@ class Classifier:
         """
         combinationList, flag = [], True
         for columnName, columnValues in list(structure.items())[:-1]:
-            values = list(map(lambda x: columnName + '=' + x, columnValues['values']))
+            values = list(map(lambda x: columnName + '=>' + x, columnValues['values']))
             if flag:
                 combinationList, flag = list(map(lambda x: [x], values)), False
             else:

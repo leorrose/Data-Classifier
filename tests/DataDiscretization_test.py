@@ -34,8 +34,8 @@ class TestDataDiscretization(unittest.TestCase):
                           ["M", "Diaspora", "value>577.5", "High"]], self.dataTwo)
 
     def test_discretizationData_ByEqualDepth(self):
-        self.discretization.discretizationData(self.data, [], self.structure, 2, "EqualDepth")
-        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "EqualDepth")
+        self.discretization.discretizationData(self.data, [], self.structure, 2, "Equal Depth")
+        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "Equal Depth")
 
         self.assertEqual([["value<=8.0", "no"], ["value<=8.0", "yes"], ["value<=8.0", "no"],
                           ["value>8.0", "yes"], ["value>8.0", "yes"]], self.data)
@@ -45,8 +45,8 @@ class TestDataDiscretization(unittest.TestCase):
                           ["M", "Diaspora", "value>640.0", "High"]], self.dataTwo)
 
     def test_discretizationData_ByGini(self):
-        self.discretization.discretizationData(self.data, [], self.structure, 2, "Gini")
-        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "Gini")
+        self.discretization.discretizationData(self.data, [], self.structure, 2, "Gini index")
+        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "Gini index")
 
         self.assertEqual([["value<=10.0", "no"], ["value<=10.0", "yes"], ["value<=10.0", "no"],
                           ["value>10.0", "yes"], ["value>10.0", "yes"]], self.data)
@@ -56,8 +56,8 @@ class TestDataDiscretization(unittest.TestCase):
                           ["M", "Diaspora", "value>577.5", "High"]], self.dataTwo)
 
     def test_discretizationData_ByEqualWidth(self):
-        self.discretization.discretizationData(self.data, [], self.structure, 2, "EqualWidth")
-        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "EqualWidth")
+        self.discretization.discretizationData(self.data, [], self.structure, 2, "Equal Width")
+        self.discretization.discretizationData(self.dataTwo, [], self.structureTwo, 2, "Equal Width")
 
         self.assertEqual([["value<=5.5", "no"], ["value<=5.5", "yes"], ["value>5.5", "no"],
                           ["value>5.5", "yes"], ["value>5.5", "yes"]], self.data)

@@ -82,8 +82,6 @@ class BuildClassifierProcess:
         method to start process after all setters have been activated
         Attributes:
             labelWidget(tkinter.Label) : a message box for showing process to user
-        Returns:
-            String: message of process (error or success)
         """
         fileCreator, dataCleaner, dataDiscretization, Calculator, dataClassifier, dataLoader = CreateFile(), Cleaner(), Discretization(),\
                                                                                                MiningCalculator(), Classifier(), Loader()
@@ -115,13 +113,15 @@ class BuildClassifierProcess:
             fileCreator.createTxtFile(classifier, "Rules", self.savingFolderPath)
             labelWidget.configure(text=labelWidget.cget("text") + "Building classifier Finished\n")
 
-            return " Classifier build successfully with accuracy: " + str(accuracy)
+            return labelWidget.configure(text=labelWidget.cget("text") + "Classifier build successfully with accuracy: " + str(accuracy) +
+                                              "\n")
 
         except EnvironmentError:
-            return "Problem with file\\ file path. please check file is not empty and file path is correct!"
+            return labelWidget.configure(text=labelWidget.cget("text") +
+                                              "Problem with file\\ file path. please check file is not empty and file path is correct!")
 
-        except ValueError:
-            return "number of bins must be at least as number of class values!"
-
+        except:
+            return labelWidget.configure(text=labelWidget.cget("text") +
+                                              "An Error occurred please check file and inputs and start again!")
 
 

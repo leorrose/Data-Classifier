@@ -77,7 +77,7 @@ class Cleaner:
         classIndex = structure['class']['index']
         for row in data:
             if row[indexOfCol] == "":
-                if row[classIndex] == "":
+                if not row[classIndex]:
                     row[indexOfCol] = totalAverage
                 else:
                     row[indexOfCol] = averages[(structure['class']['values']).index(row[classIndex])]

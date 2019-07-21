@@ -41,7 +41,8 @@ class Loader:
         """
         self.structure = self.getColumnsName(lines)
         for column in self.structure.keys():
-            self.structure[column]['values'] = self.getColumnValues(list(self.structure.keys()).index(column), lines)
+            self.structure[column]['values'] = self.getColumnValues(list(self.structure.keys()).index(column), lines,
+                                                                    self.structure['class']['index'])
 
     def getColumnsName(self, lines):
         """"
@@ -56,7 +57,7 @@ class Loader:
             names[name] = {'index': lines[0].index(name)}
         return names
 
-    def getColumnValues(self, columnIndex, lines):
+    def getColumnValues(self, columnIndex, lines, classIndex):
         """"
         method to get column values from data set
         Attributes:
@@ -66,7 +67,7 @@ class Loader:
             values (list): the values of a column in data set
         """
         values = ["Numeric"]
-        if not self.isNumeric(columnIndex, lines):
+        if not self.isNumeric(columnIndex, lines) or columnIndex == classIndex:
             values = []
             for line in lines[1:]:
                 if line[columnIndex] != "" and values.count(line[columnIndex]) == 0:
