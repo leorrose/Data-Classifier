@@ -4,19 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/MiningCalculations.py" line="244" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d94d262-43f5-484a-b145-e4b00748d4c5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataClassifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataCleaner.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataCleaner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataDiscretization.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataDiscretization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/DataLoader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/Engine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MiningCalculations.py" beforeDir="false" afterPath="$PROJECT_DIR$/MiningCalculations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProcessController.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProcessController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DataClassifier_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DataClassifier_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DataDiscretization_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DataDiscretization_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DataLaoder_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DataLaoder_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="2d94d262-43f5-484a-b145-e4b00748d4c5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
