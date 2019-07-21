@@ -14,3 +14,6 @@ Given Data set needs to be a .csv file with data columns and last column should 
 if file is not in this structure it will not work.
 
 Each step creats a .csv file with the new data from step and at the end there is .txt file with classifier rules
+
+
+![Data Classifier white class diagram](https://user-images.githubusercontent.com/44137602/61594052-e0e2bc80-abef-11e9-8ce4-373c572ff2d3.jpg)
