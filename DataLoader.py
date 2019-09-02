@@ -28,8 +28,7 @@ class Loader:
         if len(lines) == 0 or len(lines[0]) <= 1:
             raise EnvironmentError
         self.buildStructure(lines)
-        self.buildTrainingSet(lines[1:])
-        self.buildTestSet(lines[1:])
+        self.buildDataSets(lines[1:], self.structure)
 
     def buildStructure(self, lines):
         """"
@@ -94,18 +93,19 @@ class Loader:
                         return False
         return True
 
-    def buildTrainingSet(self, lines):
+    def buildDataSets(self, lines, structure):
         """
-        method to create training data set from data
+        method to create training data set and test data set from data
         Attributes:
             lines(list): the lines in data set without first line of column names
+            structure(dict): the structure of data
         """
-        self.trainingSet = lines[0:int(((len(lines)*2)/3) + 0.5)]
+        classIndex = structure['class']['index']
+        for classValue in structure['class']['values']:
+            data = list(filter(lambda x: x[classIndex] == classValue, lines))
+            self.trainingSet += data[0:int(((len(data)*2)/3) + 0.5)]
+            self.testSet += data[int(((len(data) * 2) / 3) + 0.5):]
+        data = list(filter(lambda x: x[classIndex] == "", lines))
+        self.trainingSet += data[0:int(((len(data) * 2) / 3) + 0.5)]
+        self.testSet += data[int(((len(data) * 2) / 3) + 0.5):]
 
-    def buildTestSet(self, lines):
-        """
-        method to create test data set from data
-        Attributes:
-            lines(list): the lines in data set without first line of column names
-        """
-        self.testSet = lines[int(((len(lines)*2)/3)+0.5):]

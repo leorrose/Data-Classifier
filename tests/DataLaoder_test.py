@@ -82,37 +82,22 @@ class TestDataLoader(unittest.TestCase):
         self.assertEqual(False, self.dataLoader.isNumeric(2, self.dataWithMissingValues))
 
     def test_buildTrainingSet_dataWithEvenInstances(self):
-        self.dataLoader.buildTrainingSet(self.dataWithEvenInstances[1:])
+        self.dataLoader.buildDataSets(self.dataWithEvenInstances[1:], {'class': {'index': 2, 'values': ['no', 'yes']}})
 
-        self.assertEqual([["13", "1000", "yes"], ["18", "5000", "no"], ["15", "3000", "no"]],
-                         self.dataLoader.trainingSet)
+        self.assertEqual([["18", "5000", "no"], ["13", "1000", "yes"]], self.dataLoader.trainingSet)
+        self.assertEqual([["15", "3000", "no"], ["14", "800", "yes"]], self.dataLoader.testSet)
 
     def test_buildTrainingSet_dataWithOddInstances(self):
-        self.dataLoader.buildTrainingSet(self.dataWithOddInstances[1:])
+        self.dataLoader.buildDataSets(self.dataWithOddInstances[1:], {'class': {'index': 2, 'values': ['no', 'yes']}})
 
-        self.assertEqual([["13", "1000", "yes"], ["18", "5000", "no"]],
-                         self.dataLoader.trainingSet)
-
-    def test_buildTrainingSet_dataWithMissingValues(self):
-        self.dataLoader.buildTrainingSet(self.dataWithMissingValues[1:])
-
-        self.assertEqual([["13", "", "yes"], ["18", "5000", ""]],
-                         self.dataLoader.trainingSet)
-
-    def test_buildTestSet_dataWithEvenInstances(self):
-        self.dataLoader.buildTestSet(self.dataWithEvenInstances[1:])
-
-        self.assertEqual([["14", "800", "yes"]], self.dataLoader.testSet)
-
-    def test_buildTestSet_dataWithOddInstances(self):
-        self.dataLoader.buildTestSet(self.dataWithOddInstances[1:])
-
+        self.assertEqual([["18", "5000", "no"], ["13", "1000", "yes"]], self.dataLoader.trainingSet)
         self.assertEqual([["15", "3000", "no"]], self.dataLoader.testSet)
 
-    def test_buildTestSet_dataWithMissingValues(self):
-        self.dataLoader.buildTestSet(self.dataWithMissingValues[1:])
+    def test_buildTrainingSet_dataWithMissingValues(self):
+        self.dataLoader.buildDataSets(self.dataWithMissingValues[1:], {'class': {'index': 2, 'values': ['no', 'yes']}})
 
-        self.assertEqual([["", "3000", "no"]], self.dataLoader.testSet)
+        self.assertEqual([["", "3000", "no"], ["13", "", "yes"], ["18", "5000", ""]], self.dataLoader.trainingSet)
+        self.assertEqual([], self.dataLoader.testSet)
 
 
 if __name__ == '__main__':
