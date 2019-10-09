@@ -17,3 +17,7 @@ Each step creats a .csv file with the new data from this step and at the end the
 
 
 ![Data Classifier white class diagram](https://user-images.githubusercontent.com/44137602/61594052-e0e2bc80-abef-11e9-8ce4-373c572ff2d3.jpg)
+
+Please let me know if you find bugs or something that needs to be fixed.
+
+Hope you enjoy.
