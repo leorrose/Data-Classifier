@@ -113,7 +113,7 @@ class BuildClassifierProcess:
             fileCreator.createTxtFile(classifier, "Rules", self.savingFolderPath)
             labelWidget.configure(text=labelWidget.cget("text") + "Building classifier Finished\n")
 
-            return labelWidget.configure(text=labelWidget.cget("text") + "Classifier build successfully with accuracy: " + str(accuracy) +
+            return labelWidget.configure(text=labelWidget.cget("text") + "Classifier build successfully with accuracy: " + str(round(accuracy, 3)) +
                                               "\n")
 
         except EnvironmentError:
