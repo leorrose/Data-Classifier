@@ -1,4 +1,4 @@
-# Data-Classifier
+# Simple ML Tool
 A data mining project written in python, includes:
 
 1. Data cleaning - cleaning a file before data mining process.
