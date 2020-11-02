@@ -1,3 +1,7 @@
+<p align="center">
+   <img src="https://img.shields.io/badge/-Collage%20Project-informational" />
+</p>
+
 # Simple machine learning classifier tool
 
 A Machine Learning classifier desktop application.
