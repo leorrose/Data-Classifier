@@ -1,6 +1,6 @@
 # Simple machine learning classifier tool
 
-A Machine Learning classifier desktop application.
+A Machine Learning classifier desktop application
 
 This Project was created only with <b> Python</b>. 
 
